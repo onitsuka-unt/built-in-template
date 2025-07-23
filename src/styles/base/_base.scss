@@ -19,3 +19,7 @@
 :where(h1) {
   margin-block: unset;
 }
+
+:where(button, input) {
+  border: unset;
+}
