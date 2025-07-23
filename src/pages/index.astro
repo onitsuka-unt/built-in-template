@@ -1,0 +1,33 @@
+---
+import Modal from '@/components/ui/Modal.astro';
+import Layout from '@/layouts/Layout.astro';
+
+const title = 'HOME';
+const description = 'HOME PAGE DESCRIPTION';
+---
+
+<Layout title={title} description={description}>
+  <div class="container" data-page="home">
+    <h1 class="heading">HOME</h1>
+    <button type="button" data-modal-open="modal1">モーダルを開く</button>
+    <Modal>
+      <Fragment slot="heading">
+        <h2 id="1">モーダルの見出し</h2>
+        <p>テキスト</p>
+      </Fragment>
+      <Fragment slot="close-label">モーダルを閉じる</Fragment>
+    </Modal>
+  </div>
+</Layout>
+
+<style lang="scss">
+  .container {
+    display: grid;
+    place-items: center;
+    height: 100%;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+</style>

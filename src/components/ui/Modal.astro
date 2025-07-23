@@ -1,0 +1,50 @@
+<dialog class="modal" aria-labelledby="1" data-modal="modal1" aria-modal="true">
+  <div class="container">
+    <slot name="heading" />
+  </div>
+  <button type="button" data-modal-close autofocus>
+    <span>
+      <slot name="close-label" />
+    </span>
+  </button>
+</dialog>
+
+<style lang="scss">
+  .modal {
+    inline-size: min(100%, 840px);
+    block-size: min(100%, 475px);
+    margin: auto;
+    color: var(--color-white);
+    background-color: var(--color-black);
+    transition:
+      opacity var(--transition-primary),
+      scale var(--transition-primary);
+    contain: strict;
+
+    &:not([data-active='true']) {
+      opacity: 0;
+      scale: 0.95;
+    }
+
+    &::backdrop {
+      transition: opacity 0.5s;
+    }
+
+    &:not([data-active='true'])::backdrop {
+      opacity: 0;
+    }
+  }
+
+  .container {
+    block-size: 100%; /* モーダルを閉じる時にdialog要素ではないことを保証するため */
+  }
+
+  // Safariでのfocusを抑制するためのスタイル
+  :where(:root[data-mousedown] dialog *) {
+    outline: none;
+  }
+
+  [data-modal-open]:where(:root[data-mousedown] *) {
+    outline: none;
+  }
+</style>
